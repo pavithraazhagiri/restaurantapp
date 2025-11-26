@@ -1,0 +1,111 @@
+.dish-container {
+  display: flex;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.circle-container {
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+.circle-container-red {
+  border: 1px solid rgb(170, 21, 21);
+}
+.circle-container-green {
+  border: 1px solid green;
+}
+.circle-icon-red {
+  color: rgb(170, 21, 21);
+}
+.circle-icon-green {
+  color: green;
+}
+.dish-description-container {
+  width: 70%;
+  padding-left: 10px;
+}
+.dish-name {
+  font-family: 'Roboto';
+  font-size: 20px;
+  margin: 0;
+}
+.dish-price {
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 600;
+}
+.dish-description {
+  font-family: 'Roboto';
+  font-size: 13px;
+  color: gray;
+}
+.dish-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+}
+.quantity-buttons-container {
+  display: flex;
+  width: 100px;
+}
+.quantity-button-minus {
+  border: none;
+  background-color: green;
+  color: white;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+}
+.quantity-button-plus {
+  border: none;
+  background-color: green;
+  color: white;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+}
+.quantity {
+  margin: 0;
+  background-color: green;
+  font-size: 14px;
+  color: white;
+  font-family: 'Roboto';
+  height: 30px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.not-available {
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: red;
+}
+.customizations {
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: blue;
+}
+.calories-container {
+  display: flex;
+  align-items: center;
+}
+.dish-calories {
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: orange;
+  font-weight: bold;
+}
+.dish-image-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

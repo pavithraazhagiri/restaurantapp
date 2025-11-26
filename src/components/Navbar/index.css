@@ -1,0 +1,33 @@
+.nav-container {
+  box-shadow: 1px 1px 3px rgb(165, 161, 161);
+}
+.table-menu-list {
+  list-style-type: none;
+  display: flex;
+  padding-left: 0;
+  overflow-x: auto;
+  align-items: center;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.each-menu-item {
+  display: flex;
+}
+.border-class {
+  border: none;
+  border-bottom: 2px solid red;
+}
+.menu-button {
+  border: none;
+  background-color: white;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.red-button {
+  color: red;
+}

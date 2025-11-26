@@ -1,0 +1,8 @@
+.dishes-container {
+  padding: 20px;
+}
+.dishes-ul-list-container {
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
