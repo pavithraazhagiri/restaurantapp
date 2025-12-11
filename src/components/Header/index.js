@@ -1,28 +1,35 @@
 import {AiOutlineShoppingCart} from 'react-icons/ai'
-import RestaurantContext from '../../RestaurantContext'
+import {Link} from 'react-router-dom'
+import CartContext from '../../CartContext'
 import './index.css'
 
 const Header = () => (
-  <RestaurantContext.Consumer>
+  <CartContext.Consumer>
     {value => {
-      const {restaurantDetails, cartList} = value
+      const {cartList, restaurantDetails} = value
       const {restaurantName} = restaurantDetails
 
-      const cartLength = cartList.reduce((sum, item) => sum + item.quantity, 0)
+      const cartLength = cartList.length
       return (
         <div className="header-container">
-          <h1 className="header-heading">{restaurantName}</h1>
+          <Link to="/">
+            <h1 className="header-heading">{restaurantName}</h1>
+          </Link>
           <div className="cart-container">
             <p className="my-orders">My Orders</p>
-            <div className="cart-wrapper">
-              <AiOutlineShoppingCart className="cart-icon" />
-              <p className="cart-length">{cartLength}</p>
-            </div>
+            <Link to="/cart">
+              <div className="cart-wrapper">
+                <button data-testid="cart" type="button">
+                  <AiOutlineShoppingCart className="cart-icon" />
+                </button>
+                <p className="cart-length">{cartLength}</p>
+              </div>
+            </Link>
           </div>
         </div>
       )
     }}
-  </RestaurantContext.Consumer>
+  </CartContext.Consumer>
 )
 
 export default Header
