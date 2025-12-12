@@ -7,7 +7,9 @@ const Header = () => (
   <CartContext.Consumer>
     {value => {
       const {cartList, restaurantDetails} = value
-      const {restaurantName} = restaurantDetails
+      const restaurantName = restaurantDetails
+        ? restaurantDetails.restaurantName
+        : ''
 
       const cartLength = cartList.length
       return (

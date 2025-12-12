@@ -24,6 +24,7 @@ class EachDish extends Component {
         {value => {
           const {
             cartList,
+            addCartItem,
             incrementCartItemQuantity,
             decrementCartItemQuantity,
           } = value
@@ -33,14 +34,20 @@ class EachDish extends Component {
           const quantity = presentItem ? presentItem.quantity : 0
           const add = () => {
             const itemDetails = {dishId, dishName, dishPrice, dishImage}
-            incrementCartItemQuantity(itemDetails)
+            console.log(quantity)
+            if (quantity === 0) {
+              addCartItem(itemDetails)
+            } else {
+              incrementCartItemQuantity(dishId)
+            }
           }
+
           const reduce = () => {
             if (quantity === 0) {
               return
             }
-            const itemDetails = {dishId, dishName, dishPrice, dishImage}
-            decrementCartItemQuantity(itemDetails)
+            // const itemDetails = {dishId, dishName, dishPrice, dishImage}
+            decrementCartItemQuantity(dishId)
           }
           const circleContainerClasses =
             dishType === 1

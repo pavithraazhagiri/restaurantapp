@@ -44,8 +44,13 @@ class Home extends Component {
       }),
     )
     const restaurantDetails = {restaurantName, tableMenuList}
+    // Check if context is available
     const {setRestaurantDetails} = this.context
-    setRestaurantDetails(restaurantDetails)
+    if (this.context && setRestaurantDetails) {
+      setRestaurantDetails(restaurantDetails)
+    }
+    // const {setRestaurantDetails} = this.context
+    // setRestaurantDetails(restaurantDetails)
     this.setState({
       activeTabId: tableMenuList[0].menuCategoryId,
     })
@@ -57,6 +62,7 @@ class Home extends Component {
     if (!restaurantDetails.tableMenuList.length) {
       return null
     }
+    console.log('home render')
     return (
       <>
         <Header />

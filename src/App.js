@@ -24,21 +24,63 @@ class App extends Component {
     }
   }
 
-  incrementCartItemQuantity = itemDetails => {
+  // addCartItem = itemDetails => {
+  //   const {cartList} = this.state
+  //   const existingItem = cartList.find(
+  //     item => item.dishId === itemDetails.dishId,
+  //   )
+  //   if (existingItem) {
+  //     const updatedCartList = cartList.map(eachItem => {
+  //       if (eachItem.dishId === itemDetails.dishId) {
+  //         return {
+  //           ...eachItem,
+  //           quantity: eachItem.quantity + (itemDetails.cartCount || 1),
+  //         }
+  //       }
+  //       return eachItem
+  //     })
+  //     this.setState({cartList: updatedCartList})
+  //   } else {
+  //     const updatedCartList = [
+  //       ...cartList,
+  //       {...itemDetails, quantity: itemDetails.cartCount || 1},
+  //     ]
+  //     this.setState({cartList: updatedCartList})
+  //   }
+  // }
+
+  // incrementCartItemQuantity = itemDetails => {
+  //   const {cartList} = this.state
+  //   const currentItem = cartList.find(
+  //     eachItem => eachItem.dishId === itemDetails.dishId,
+  //   )
+  //   if (currentItem === undefined) {
+  //     this.addCartItem(itemDetails)
+  //   } else {
+  //     const updatedCartList = cartList.map(eachItem => {
+  //       if (eachItem.dishId === itemDetails.dishId) {
+  //         const updatedItem = {
+  //           ...eachItem,
+  //           quantity: eachItem.quantity + 1,
+  //         }
+  //         return updatedItem
+  //       }
+  //       return eachItem
+  //     })
+  //     this.setState({cartList: updatedCartList})
+  //   }
+  // }
+
+  incrementCartItemQuantity = dishId => {
     const {cartList} = this.state
-    const currentItem = cartList.find(
-      eachItem => eachItem.dishId === itemDetails.dishId,
-    )
+    const currentItem = cartList.find(eachItem => eachItem.dishId === dishId)
     if (currentItem === undefined) {
-      this.addCartItem(itemDetails)
+      // Add new item with quantity 1
+      this.addCartItem({dishId, quantity: 1})
     } else {
       const updatedCartList = cartList.map(eachItem => {
-        if (eachItem.dishId === itemDetails.dishId) {
-          const updatedItem = {
-            ...eachItem,
-            quantity: eachItem.quantity + 1,
-          }
-          return updatedItem
+        if (eachItem.dishId === dishId) {
+          return {...eachItem, quantity: eachItem.quantity + 1}
         }
         return eachItem
       })
@@ -46,34 +88,52 @@ class App extends Component {
     }
   }
 
-  removeCartItem = itemDetails => {
+  removeCartItem = dishId => {
     const {cartList} = this.state
     const updatedCartList = cartList.filter(
-      eachItem => eachItem.dishId !== itemDetails.dishId,
+      eachItem => eachItem.dishId !== dishId,
     )
     this.setState({cartList: updatedCartList})
   }
 
-  decrementCartItemQuantity = itemDetails => {
+  // decrementCartItemQuantity = itemDetails => {
+  //   const {cartList} = this.state
+  //   const currentItem = cartList.find(
+  //     eachItem => eachItem.dishId === itemDetails.dishId,
+  //   )
+  //   if (currentItem !== undefined) {
+  //     if (currentItem.quantity > 1) {
+  //       const updatedCartList = cartList.map(eachItem => {
+  //         if (eachItem.dishId === itemDetails.dishId) {
+  //           const updatedItem = {
+  //             ...eachItem,
+  //             quantity: eachItem.quantity - 1,
+  //           }
+  //           return updatedItem
+  //         }
+  //         return eachItem
+  //       })
+  //       this.setState({cartList: updatedCartList})
+  //     } else {
+  //       this.removeCartItem(itemDetails)
+  //     }
+  //   }
+  // }
+
+  decrementCartItemQuantity = dishId => {
     const {cartList} = this.state
-    const currentItem = cartList.find(
-      eachItem => eachItem.dishId === itemDetails.dishId,
-    )
+    const currentItem = cartList.find(eachItem => eachItem.dishId === dishId)
     if (currentItem !== undefined) {
       if (currentItem.quantity > 1) {
         const updatedCartList = cartList.map(eachItem => {
-          if (eachItem.dishId === itemDetails.dishId) {
-            const updatedItem = {
-              ...eachItem,
-              quantity: eachItem.quantity - 1,
-            }
-            return updatedItem
+          if (eachItem.dishId === dishId) {
+            return {...eachItem, quantity: eachItem.quantity - 1}
           }
           return eachItem
         })
         this.setState({cartList: updatedCartList})
       } else {
-        this.removeCartItem(itemDetails)
+        this.removeCartItem(dishId)
       }
     }
   }

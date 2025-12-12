@@ -3,17 +3,17 @@ import CartContext from '../../CartContext'
 
 const EachCartItem = props => {
   const {itemDetails} = props
-  const {dishId, dishName, dishImage, dishPrice, quantity} = itemDetails
+  const {dishId, dishName, dishImage, quantity} = itemDetails
   // prettier-ignore
   const {incrementCartItemQuantity, decrementCartItemQuantity} =
     useContext(CartContext)
   const add = () => {
-    const itemDetailsToAdd = {dishId, dishName, dishPrice, dishImage}
-    incrementCartItemQuantity(itemDetailsToAdd)
+    // const itemDetailsToAdd = {dishId, dishName, dishPrice, dishImage}
+    incrementCartItemQuantity(dishId)
   }
   const reduce = () => {
-    const itemDetailsToReduce = {dishId, dishName, dishPrice}
-    decrementCartItemQuantity(itemDetailsToReduce)
+    // const itemDetailsToReduce = {dishId, dishName, dishPrice, dishImage}
+    decrementCartItemQuantity(dishId)
   }
   return (
     <li>
