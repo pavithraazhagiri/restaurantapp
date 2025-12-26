@@ -1,0 +1,43 @@
+.cart-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.cart-item-dish-name-container {
+  width: 30%;
+}
+.cart-item-dish-name {
+  font-family: 'Roboto';
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.cart-item-dish-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+}
+.cart-item-dish-price {
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.cart-item-quantity-buttons-container {
+  display: flex;
+}
+@media (max-width: 767px) {
+  .cart-item-quantity-buttons-container {
+    width: 80px;
+    margin-left: 5px;
+  }
+}
+@media (min-width: 767px) {
+  .cart-item-quantity-buttons-container {
+    width: 100px;
+  }
+}

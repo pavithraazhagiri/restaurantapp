@@ -22,8 +22,6 @@ class Home extends Component {
       'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details'
     const response = await fetch(url)
     const responseData = await response.json()
-    console.log('responsedata')
-    console.log(responseData)
     const restaurantName = responseData[0].restaurant_name
     const tableMenuList = responseData[0].table_menu_list.map(
       eachCategoryObj => ({
@@ -62,7 +60,6 @@ class Home extends Component {
     if (!restaurantDetails.tableMenuList.length) {
       return null
     }
-    console.log('home render')
     return (
       <>
         <Header />

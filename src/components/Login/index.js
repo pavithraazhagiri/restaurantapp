@@ -23,16 +23,12 @@ class Login extends Component {
     const response = await fetch(url, options)
     if (response.ok === true) {
       const responseData = await response.json()
-      console.log(responseData)
       const jwtToken = responseData.jwt_token
-      console.log(jwtToken)
       Cookies.set('jwt_token', jwtToken, {expires: 1})
       const {history} = this.props
       history.replace('/')
     } else {
-      console.log(response)
       const responseData = await response.json()
-      console.log(responseData)
       this.setState({errorMsg: responseData.error_msg})
     }
   }
@@ -53,7 +49,7 @@ class Login extends Component {
     const {username, password, errorMsg} = this.state
     return (
       <form onSubmit={this.onLogin}>
-        <div>
+        <div className="mb-3">
           <label htmlFor="usernameId">USERNAME</label>
           <br />
           <input

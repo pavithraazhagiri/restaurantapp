@@ -4,6 +4,19 @@ import CartContext from '../../CartContext'
 import './index.css'
 
 class EachDish extends Component {
+  state = {quantity: 0}
+
+  onIncreaseQuantity = () => {
+    this.setState(prevState => ({quantity: prevState.quantity + 1}))
+  }
+
+  onDecreaseQuantity = () => {
+    const {quantity} = this.state
+    if (quantity > 0) {
+      this.setState(prevState => ({quantity: prevState.quantity - 1}))
+    }
+  }
+
   render() {
     const {dishDetails} = this.props
     const {
@@ -22,33 +35,24 @@ class EachDish extends Component {
     return (
       <CartContext.Consumer>
         {value => {
-          const {
-            cartList,
-            addCartItem,
-            incrementCartItemQuantity,
-            decrementCartItemQuantity,
-          } = value
-          const presentItem = cartList.find(
-            eachItem => eachItem.dishId === dishId,
-          )
-          const quantity = presentItem ? presentItem.quantity : 0
+          const {addCartItem} = value
+          const {quantity} = this.state
+          // const presentItem = cartList.find(
+          //   eachItem => eachItem.dishId === dishId,
+          // )
+          // const quantity = presentItem ? presentItem.quantity : 0
           const add = () => {
-            const itemDetails = {dishId, dishName, dishPrice, dishImage}
-            console.log(quantity)
-            if (quantity === 0) {
-              addCartItem(itemDetails)
-            } else {
-              incrementCartItemQuantity(dishId)
+            const itemDetails = {
+              dishId,
+              dishName,
+              dishPrice,
+              dishImage,
+              quantity,
             }
+            console.log(itemDetails)
+            addCartItem(itemDetails)
           }
 
-          const reduce = () => {
-            if (quantity === 0) {
-              return
-            }
-            // const itemDetails = {dishId, dishName, dishPrice, dishImage}
-            decrementCartItemQuantity(dishId)
-          }
           const circleContainerClasses =
             dishType === 1
               ? 'circle-container circle-container-red'
@@ -73,7 +77,7 @@ class EachDish extends Component {
                         type="button"
                         data-testid="decrement-quantity"
                         className="quantity-button-minus"
-                        onClick={reduce}
+                        onClick={this.onDecreaseQuantity}
                       >
                         -
                       </button>
@@ -84,24 +88,28 @@ class EachDish extends Component {
                         type="button"
                         data-testid="increment-quantity"
                         className="quantity-button-plus"
-                        onClick={add}
+                        onClick={this.onIncreaseQuantity}
                       >
                         +
                       </button>
                     </div>
-                    <button
-                      type="button"
-                      onClick={add}
-                      data-testid="add-to-cart"
-                    >
-                      ADD TO CART
-                    </button>
                   </>
                 ) : (
                   <>
                     <p className="not-available">Not available</p>
                   </>
                 )}
+                {quantity > 0 && (
+                  <button
+                    type="button"
+                    onClick={add}
+                    data-testid="add-to-cart"
+                    className="add-to-cart-button"
+                  >
+                    ADD TO CART
+                  </button>
+                )}
+
                 {addonCat.length > 0 && (
                   <p className="customizations">Customizations available</p>
                 )}

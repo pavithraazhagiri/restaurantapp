@@ -13,14 +13,10 @@ const Dishes = props => {
         const categoryMenuDetails = tableMenuList.find(
           eachMenu => activeTabId === eachMenu.menuCategoryId,
         )
-        console.log('categoryMenuDetails')
-        console.log(categoryMenuDetails)
         if (categoryMenuDetails === undefined) {
           return null
         }
         const {categoryDishes} = categoryMenuDetails
-        console.log('categoryDishes')
-        console.log(categoryDishes)
         if (categoryDishes === undefined) {
           return null
         }

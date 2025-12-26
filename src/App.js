@@ -19,35 +19,22 @@ class App extends Component {
       item => item.dishId === itemDetails.dishId,
     )
     if (!existingItem) {
-      const updatedCartList = [...cartList, {...itemDetails, quantity: 1}]
+      const updatedCartList = [...cartList, {...itemDetails}]
+      this.setState({cartList: updatedCartList})
+    } else {
+      const updatedCartList = cartList.map(eachItem => {
+        if (eachItem.dishId === itemDetails.dishId) {
+          const updatedItem = {
+            ...eachItem,
+            quantity: eachItem.quantity + itemDetails.quantity,
+          }
+          return updatedItem
+        }
+        return eachItem
+      })
       this.setState({cartList: updatedCartList})
     }
   }
-
-  // addCartItem = itemDetails => {
-  //   const {cartList} = this.state
-  //   const existingItem = cartList.find(
-  //     item => item.dishId === itemDetails.dishId,
-  //   )
-  //   if (existingItem) {
-  //     const updatedCartList = cartList.map(eachItem => {
-  //       if (eachItem.dishId === itemDetails.dishId) {
-  //         return {
-  //           ...eachItem,
-  //           quantity: eachItem.quantity + (itemDetails.cartCount || 1),
-  //         }
-  //       }
-  //       return eachItem
-  //     })
-  //     this.setState({cartList: updatedCartList})
-  //   } else {
-  //     const updatedCartList = [
-  //       ...cartList,
-  //       {...itemDetails, quantity: itemDetails.cartCount || 1},
-  //     ]
-  //     this.setState({cartList: updatedCartList})
-  //   }
-  // }
 
   // incrementCartItemQuantity = itemDetails => {
   //   const {cartList} = this.state
@@ -61,7 +48,7 @@ class App extends Component {
   //       if (eachItem.dishId === itemDetails.dishId) {
   //         const updatedItem = {
   //           ...eachItem,
-  //           quantity: eachItem.quantity + 1,
+  //           quantity: eachItem.quantity + itemDetails.quantity,
   //         }
   //         return updatedItem
   //       }
@@ -73,19 +60,13 @@ class App extends Component {
 
   incrementCartItemQuantity = dishId => {
     const {cartList} = this.state
-    const currentItem = cartList.find(eachItem => eachItem.dishId === dishId)
-    if (currentItem === undefined) {
-      // Add new item with quantity 1
-      this.addCartItem({dishId, quantity: 1})
-    } else {
-      const updatedCartList = cartList.map(eachItem => {
-        if (eachItem.dishId === dishId) {
-          return {...eachItem, quantity: eachItem.quantity + 1}
-        }
-        return eachItem
-      })
-      this.setState({cartList: updatedCartList})
-    }
+    const updatedCartList = cartList.map(eachItem => {
+      if (eachItem.dishId === dishId) {
+        return {...eachItem, quantity: eachItem.quantity + 1}
+      }
+      return eachItem
+    })
+    this.setState({cartList: updatedCartList})
   }
 
   removeCartItem = dishId => {

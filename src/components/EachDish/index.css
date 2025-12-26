@@ -4,6 +4,7 @@
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px;
+  overflow-x: auto;
 }
 .circle-container {
   align-self: flex-start;
@@ -108,4 +109,13 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+}
+.add-to-cart-button {
+  background-color: rgb(118, 118, 231);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  width: 120px;
+  height: 30px;
+  margin-top: 10px;
 }
